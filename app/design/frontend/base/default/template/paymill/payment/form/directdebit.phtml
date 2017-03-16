@@ -1,0 +1,71 @@
+<?php $_code = $this->getMethodCode(); ?>
+<?php $fastCheckoutData = $this->getPaymentEntryElv($_code); ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <p class="payScrow-payment-errors alert-error" style="display:none;"></p>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_holdername" class="required"><em>*</em><?php echo $this->__("payScrow_Holder") ?></label>
+        <div class="input-box">
+            <input value="<?php echo $this->getPaymentEntry($_code, 'holder'); ?>" type="text" id="<?php echo $_code ?>_holdername" class="input-text payScrow-validate-dd-holdername required-entry"/>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_account_iban" class="required"><em>*</em><?php echo $this->__("payScrow_iban") ?> / <?php echo $this->__("payScrow_account") ?></label>
+        <div class="input-box">
+            <input value="<?php echo $fastCheckoutData[0]; ?>" type="text" id="<?php echo $_code ?>_account_iban" class="input-text payScrow-validate-dd-account-iban required-entry"/>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_bankcode_bic" class="required"><em>*</em><?php echo $this->__("payScrow_bic") ?> / <?php echo $this->__("payScrow_bankcode") ?></label>
+        <div class="input-box">
+            <input value="<?php echo $fastCheckoutData[1]; ?>" type="text" id="<?php echo $_code ?>_bankcode_bic" class="input-text payScrow-validate-dd-bankcode-bic required-entry"/>
+        </div>
+    </li>
+    <li>
+        <input class="payScrow-payment-token-elv payScrow-validate-elv-token" name="payment[payScrow-payment-token-elv]" id="payment[payScrow-payment-token-elv]" type="hidden" />
+        <input class="payScrow-option-debug-elv" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->isInDebugMode(); ?>" />
+        <input class="payScrow-info-public_key-elv" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->getPublicKey(); ?>" />
+        <input class="payScrow-info-fastCheckout-elv" type="hidden" value="<?php echo $this->isFastCheckout($_code); ?>" />
+        <input class="payScrow-payment-token-log-elv" type="hidden" value="<?php echo  $this->getUrl('payScrow/token/log', array('_secure'=>true));  ?>"/>
+        <input class="payScrow-payment-error-number-elv" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_number_elv"); ?>" />
+        <input class="payScrow-payment-error-holder-elv" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_holder_elv"); ?>" />
+        <input class="payScrow-payment-error-number-iban-elv" type="hidden" value="<?php echo $this->__("payScrow_feedback_error_directdebit_number_iban"); ?>" />
+        <input class="payScrow-payment-error-bankcode" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_bankcode"); ?>" />
+        <input class="payScrow-payment-error-bankcode-bic-elv" type="hidden" value="<?php echo $this->__("payScrow_feedback_error_directdebit_bankcode_bic"); ?>" />
+        <input class="payScrow-payment-error-elv-token" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_token"); ?>"/>
+        <input class="PAYScrow_internal_server_error-elv" type="hidden" value="<?php echo $this->__("PAYScrow_internal_server_error"); ?>"/>
+        <input class="PAYScrow_invalid_public_key-elv" type="hidden" value="<?php echo $this->__("PAYScrow_invalid_public_key"); ?>"/>
+        <input class="PAYScrow_invalid_payment_data-elv" type="hidden" value="<?php echo $this->__("PAYScrow_invalid_payment_data"); ?>"/>
+        <input class="PAYScrow_unknown_error-elv" type="hidden" value="<?php echo $this->__("PAYScrow_unknown_error"); ?>"/>
+        <input class="PAYScrow_3ds_cancelled-elv" type="hidden" value="<?php echo $this->__("PAYScrow_3ds_cancelled"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_number-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_number"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_exp_year-ekv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_exp_year"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_exp_month-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_exp_month"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_exp-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_exp"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_cvc-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_cvc"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_holder-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_holder"); ?>"/>
+        <input class="PAYScrow_field_invalid_amount_int-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_amount_int"); ?>"/>
+        <input class="PAYScrow_field_field_invalid_amount-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_field_invalid_amount"); ?>"/>
+        <input class="PAYScrow_field_invalid_currency-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_currency"); ?>"/>
+        <input class="PAYScrow_field_invalid_account_number-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_account_number"); ?>"/>
+        <input class="PAYScrow_field_invalid_account_holder-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_account_holder"); ?>"/>
+        <input class="PAYScrow_field_invalid_bank_code-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_bank_code"); ?>"/>
+        <input class="PAYScrow_field_invalid_iban-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_iban"); ?>"/>
+        <input class="PAYScrow_field_invalid_bic-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_bic"); ?>"/>
+        <input class="PAYScrow_field_invalid_country-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_country"); ?>"/>
+        <input class="PAYScrow_field_invalid_bank_data-elv" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_bank_data"); ?>"/>
+    </li>
+    <?php if (!is_null(Mage::getStoreConfig('payment/payScrow_directdebit/checkout_desc', Mage::app()->getStore()->getStoreId()))): ?>
+    <li>
+        <?php echo Mage::getStoreConfig('payment/payScrow_directdebit/checkout_desc', Mage::app()->getStore()->getStoreId()); ?>
+    </li>
+    <?php endif; ?>
+</ul>
+<script type="text/javascript">
+    //<![CDATA[
+    payScrowElv = new PayScrow('<?php echo $_code; ?>');
+    payScrowElv.setValidationRules();
+    payScrowElv.setEventListener('<?php echo Mage::helper('payScrow/optionHelper')->getTokenSelector(); ?>');
+    //]]>
+</script>

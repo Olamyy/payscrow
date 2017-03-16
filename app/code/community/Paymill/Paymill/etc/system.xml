@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <payScrow  translate="label">
+                    <label>payScrow_Basic_Setting</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>700</sort_order>
+                    <fields>
+                        <version>
+                            <label>v4.0.3</label>
+                            <sort_order>1</sort_order>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <frontend_type>label</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <private_key translate="label, tooltip, comment">
+                            <label>payScrow_Private_Key</label>
+                            <sort_order>2</sort_order>
+                            <tooltip>payScrow_private_key_tooltip</tooltip>
+                            <comment>payScrow_private_key_comment</comment>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </private_key>
+                        <public_key translate="label, tooltip, comment">
+                            <label>payScrow_Public_Key</label>
+                            <sort_order>3</sort_order>
+                            <tooltip>payScrow_public_key_tooltip</tooltip>
+                            <comment>payScrow_public_key_comment</comment>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </public_key>
+                        <debugging_active translate="label">
+                            <label>payScrow_Activate_Debugging</label>
+                            <sort_order>6</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </debugging_active>
+                        <fc_active translate="label">
+                            <label>payScrow_fc_active</label>
+                            <sort_order>7</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fc_active>
+                        <logging_active translate="label">
+                            <label>payScrow_Activate_Logging</label>
+                            <sort_order>8</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logging_active>
+                        <expert_settings>
+                            <label>payScrow_expert_settings</label>
+                            <sort_order>9</sort_order>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <frontend_type>label</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </expert_settings>
+                        <base_currency>
+                            <label>payScrow_base_or_order_currency</label>
+                            <tooltip>payScrow_payScrow_base_or_order_currency_tooltip</tooltip>
+                            <sort_order>10</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </base_currency>
+                        <token_creation_identifier_id>
+                            <label>payScrow_token_creation_identifier_id</label>
+                            <sort_order>11</sort_order>
+                            <tooltip>payScrow_token_creation_identifier_id_tooltip</tooltip>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </token_creation_identifier_id>
+                    </fields>
+                </payScrow>
+
+                <payScrow_creditcard module="payScrow" translate="label">
+                    <label>payScrow_credit_card_label</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>800</sort_order>
+                    <fields>
+                        <version>
+                            <label>v4.0.3</label>
+                            <sort_order>100</sort_order>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <frontend_type>label</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <pci translate="label">
+                            <label>payScrow_payment_form</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>110</sort_order>
+                            <source_model>payScrow/source_creditcard_pci</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pci>
+                        <active translate="label">
+                            <label>payScrow_opt_Enabled</label>
+                            <sort_order>200</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <showspecificcreditcard translate="label">
+                            <label>payScrow_show_creditcards</label>
+                            <sort_order>205</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showspecificcreditcard>
+                        <specificcreditcard translate="label">
+                            <label>payScrow_select_creditcards</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>210</sort_order>
+                            <source_model>payScrow/source_creditcard_creditcards</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><showspecificcreditcard>1</showspecificcreditcard></depends>
+                        </specificcreditcard>
+                        <allowspecific translate="label">
+                            <label>Payment from Applicable Countries</label>
+                            <sort_order>220</sort_order>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Payment from Specific Countries</label>
+                            <sort_order>300</sort_order>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <can_be_empty>1</can_be_empty>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>
+                        <currency translate="label">
+                            <label>payScrow_accepted_currency</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>350</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </currency>
+                        <order_status translate="label">
+                            <label>New order status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>355</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <preAuth_active translate="label">
+                            <label>payScrow_preAuth_active</label>
+                            <sort_order>360</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </preAuth_active>
+                        <send_invoice_mail translate="label">
+                            <label>payScrow_send_invoice_mail</label>
+                            <sort_order>370</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <preAuth_active>0</preAuth_active>
+                            </depends>
+                        </send_invoice_mail>
+                        <checkout_desc translate="label">
+                            <label>payScrow_checkout_desc</label>
+                            <sort_order>380</sort_order>
+                            <frontend_type>textarea</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_desc>
+                        <sort_order translate="label">
+                            <label>payScrow_opt_Sort</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>381</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                        <hook_settings>
+                            <label>payScrow_hook_settings</label>
+                            <sort_order>385</sort_order>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <frontend_type>label</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hook_settings>
+                        <hook_create_invoice_active translate="label">
+                            <label>payScrow_hook_create_invoice_active</label>
+                            <sort_order>390</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hook_create_invoice_active>
+                        <send_hook_invoice_mail translate="label">
+                            <label>payScrow_hook_send_invoice_mail</label>
+                            <sort_order>395</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <hook_create_invoice_active>1</hook_create_invoice_active>
+                            </depends>
+                        </send_hook_invoice_mail>
+                    </fields>
+                </payScrow_creditcard>
+
+                <payScrow_directdebit module="payScrow" translate="label">
+                    <label>payScrow_direct_debit_label</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>800</sort_order>
+                    <fields>
+                        <version>
+                            <label>v4.0.3</label>
+                            <sort_order>100</sort_order>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <frontend_type>label</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <active translate="label">
+                            <label>payScrow_opt_Enabled</label>
+                            <sort_order>200</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <prenotification translate="label">
+                            <label>payScrow_prenotification</label>
+                            <sort_order>210</sort_order>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits validate-not-negative-number</validate>
+                        </prenotification>
+                        <allowspecific translate="label">
+                            <label>Payment from Applicable Countries</label>
+                            <sort_order>220</sort_order>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <label>Payment from Specific Countries</label>
+                            <sort_order>300</sort_order>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <can_be_empty>1</can_be_empty>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>
+                        <currency translate="label">
+                            <label>payScrow_accepted_currency</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>350</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </currency>
+                        <order_status translate="label">
+                            <label>New order status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>355</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <checkout_desc translate="label">
+                            <label>payScrow_checkout_desc</label>
+                            <sort_order>370</sort_order>
+                            <frontend_type>textarea</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_desc>
+                        <checkout_desc translate="label">
+                            <label>payScrow_checkout_desc</label>
+                            <sort_order>380</sort_order>
+                            <frontend_type>textarea</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </checkout_desc>
+                        <sort_order translate="label">
+                            <label>payScrow_opt_Sort</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>381</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                        <hook_settings>
+                            <label>payScrow_hook_settings</label>
+                            <sort_order>385</sort_order>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <frontend_type>label</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hook_settings>
+                        <hook_create_invoice_active translate="label">
+                            <label>payScrow_hook_create_invoice_active</label>
+                            <sort_order>390</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hook_create_invoice_active>
+                        <send_hook_invoice_mail translate="label">
+                            <label>payScrow_hook_send_invoice_mail</label>
+                            <sort_order>395</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <hook_create_invoice_active>1</hook_create_invoice_active>
+                            </depends>
+                        </send_hook_invoice_mail>
+                    </fields>
+                </payScrow_directdebit>
+            </groups>
+        </payment>
+    </sections>
+</config>

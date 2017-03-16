@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <PayScrow_PayScrow>
+            <version>4.0.3</version>
+        </PayScrow_PayScrow>
+    </modules>
+
+
+    <global>
+        <blocks>
+            <payScrow>
+                <class>PayScrow_PayScrow_Block</class>
+            </payScrow>
+        </blocks>
+
+        <models>
+            <payScrow>
+                <class>PayScrow_PayScrow_Model</class>
+                <resourceModel>payScrow_mysql4</resourceModel>
+            </payScrow>
+            <payScrow_mysql4>
+                <class>PayScrow_PayScrow_Model_Mysql4</class>
+                <entities>
+                    <log>
+                        <table>payScrow_log</table>
+                    </log>
+                    <fastcheckout>
+                        <table>payScrow_fastCheckout</table>
+                    </fastcheckout>
+                </entities>
+            </payScrow_mysql4>
+        </models>
+
+        <helpers>
+            <payScrow>
+                <class>PayScrow_PayScrow_Helper</class>
+            </payScrow>
+        </helpers>
+
+        <resources>
+            <payScrow_setup>
+                <setup>
+                    <module>PayScrow_PayScrow</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </payScrow_setup>
+
+            <payScrow_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </payScrow_write>
+
+            <payScrow_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </payScrow_read>
+        </resources>
+
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <payScrow_payScrow_model_observer>
+                        <type>singleton</type>
+                        <class>payScrow/observer</class>
+                        <method>generateInvoice</method>
+                    </payScrow_payScrow_model_observer>
+                </observers>
+            </sales_order_place_after>
+        </events>
+    </global>
+
+
+    <!-- declare default configuration values for this module -->
+    <default>
+        <!-- 'payment' configuration section (tab) -->
+        <payment>
+            <payScrow>
+                <base_currency>1</base_currency>
+            </payScrow>
+            <payScrow_creditcard>
+                <active>0</active>
+                <currency>EUR,USD</currency>
+                <model>payScrow/method_methodModelCreditcard</model>
+                <order_status>processing</order_status>
+                <title>payScrow_credit_card</title>
+                <payment_action>authorize</payment_action>
+                <pci>SAQ A</pci>
+            </payScrow_creditcard>
+
+            <payScrow_directdebit>
+                <active>0</active>
+                <prenotification>7</prenotification>
+                <currency>EUR,USD</currency>
+                <model>payScrow/method_methodModelDirectdebit</model>
+                <order_status>pending</order_status>
+                <title>payScrow_direct_debit</title>
+                <payment_action>authorize</payment_action>
+            </payScrow_directdebit>
+        </payment>
+    </default>
+
+    <frontend>
+        <layout>
+            <updates>
+                <payScrow>
+                    <file>payScrow.xml</file>
+                </payScrow>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <PayScrow_PayScrow>
+                    <files>
+                        <default>PayScrow_PayScrow.csv</default>
+                    </files>
+                </PayScrow_PayScrow>
+            </modules>
+        </translate>
+        
+        <routers>
+            <payScrow>
+                <use>standard</use>
+                <args>
+                    <module>PayScrow_PayScrow</module>
+                    <frontName>payScrow</frontName>
+                </args>
+            </payScrow>
+        </routers>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <PayScrow_PayScrow>
+                    <files>
+                        <default>PayScrow_PayScrow.csv</default>
+                    </files>
+                </PayScrow_PayScrow>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <payScrow>
+                    <file>payScrow.xml</file>
+                </payScrow>
+            </updates>
+        </layout>
+
+        <global_search>
+            <payScrow_search>
+                <class>payScrow/log_search</class>
+                <acl>payScrow</acl>
+            </payScrow_search>
+        </global_search>
+    </adminhtml>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <payScrow after="Mage_Adminhtml">PayScrow_PayScrow_Adminhtml</payScrow>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+</config>

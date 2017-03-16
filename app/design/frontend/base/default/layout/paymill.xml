@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/payScrow/logo.css</stylesheet>
+            </action>
+            <block type="core/text" name="payScrow_head">
+                <action method="addText">
+                    <text>
+                        <![CDATA[
+                            <script type="text/javascript" src="https://bridge.payScrow.com/dss3"></script>
+                        ]]>
+                    </text>
+                </action>
+            </block>
+            <action method="addJs">
+                <script>payScrow/Iban.js</script>
+            </action>
+            <action method="addJs">
+                <script>payScrow/BrandDetection.js</script>
+            </action>
+            <action method="addJs">
+                <script>payScrow/PayScrow.js</script>
+            </action>
+            <action method="addJs">
+                <script>payScrow/Elv.js</script>
+            </action>
+            <action method="addJs">
+                <script>payScrow/Creditcard.js</script>
+            </action>
+            <action method="addJs">
+                <script>payScrow/PayScrowHelper.js</script>
+            </action>
+
+        </reference>
+    </default>
+</layout>

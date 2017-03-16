@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <logs>
+            <title>PayScrow</title>
+            <sort_order>60</sort_order>
+            <children>
+                <payScrow_log translate="title" module="payScrow">
+                    <title>payScrow_log</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/log</action>
+                </payScrow_log>
+                <payScrow_hook translate="title" module="payScrow">
+                    <title>Webhooks</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/hook</action>
+                </payScrow_hook>
+            </children>
+        </logs>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <payScrow_log translate="title" module="payScrow">
+                        <title>payScrow_log</title>
+                        <sort_order>60</sort_order>
+                        <children>
+                            <subitem translate="title" module="payScrow">
+                                <title>payScrow_log</title>
+                                <sort_order>10</sort_order>
+                            </subitem>
+                        </children>
+                    </payScrow_log>
+                    <payScrow_hook translate="title" module="payScrow">
+                        <title>Webhooks</title>
+                        <sort_order>60</sort_order>
+                        <children>
+                            <subitem translate="title" module="payScrow">
+                                <title>Webhooks</title>
+                                <sort_order>10</sort_order>
+                            </subitem>
+                        </children>
+                    </payScrow_hook>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

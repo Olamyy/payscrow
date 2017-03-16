@@ -1,0 +1,13 @@
+<table>
+    <tr>
+        <td><?php echo $this->htmlEscape($this->getMethod()->getTitle()) ?></td>
+    </tr>
+    <?php if(!is_null($this->getInfo()->getAdditionalInformation('payScrowPrenotificationDate'))) : ?>
+    <tr>
+        <td>
+         <?php echo $this->__('payScrow_prenotification_text') . " " . $this->getInfo()->getAdditionalInformation('payScrowPrenotificationDate'); ?>
+             </td>
+    </tr>
+    <?php endif; ?>
+</table>
+<?php echo $this->getChildHtml() ?>

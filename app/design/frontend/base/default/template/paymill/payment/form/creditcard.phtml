@@ -1,0 +1,101 @@
+<?php $_code = $this->getMethodCode(); ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <?php echo $this->getCreditCardLogosDisplay();?>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_holdername" class="required"><em>*</em><?php echo $this->__("payScrow_Holder") ?></label>
+        <div class="input-box">
+            <input value="<?php echo $this->getPaymentEntry($_code, 'card_holder'); ?>" type="text" id="<?php echo $_code ?>_holdername" class="input-text payScrow-validate-cc-holder required-entry"/>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_number" class="required"><em>*</em><?php echo $this->__("payScrow_Number") ?></label>
+        <div class="input-box">
+            <input value="<?php echo $this->getPaymentEntry($_code, 'cc_number'); ?>" type="text" id="<?php echo $_code ?>_number" class="input-text payScrow-validate-cc-number required-entry"/>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_expiry_month" class="required"><em>*</em><?php echo $this->__("payScrow_Date") ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <select id="<?php echo $_code ?>_expiry_month" class="month payScrow-validate-cc-expdate-month required-entry">
+                    <?php foreach ($this->getPayScrowCcMonths() as $k => $v): ?>
+                        <option value="<?php echo $k ? $k : '' ?>"<?php if($this->isPaymentDataAvailable($_code) && $this->getPaymentEntry($_code, 'expire_month') == $k): ?> selected="selected"<?php else: ?><?php if ($k == $this->getInfoData($_code . '_expiry_month')): ?> selected="selected"<?php endif ?><?php endif ?>><?php echo $v ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="v-fix">
+                <select id="<?php echo $_code ?>_expiry_year" class="year payScrow-validate-cc-expdate-year required-entry">
+                    <?php foreach ($this->getPayScrowCcYears() as $k => $v): ?>
+                        <option value="<?php echo $k ? $k : '' ?>"<?php if($this->isPaymentDataAvailable($_code) && $this->getPaymentEntry($_code, 'expire_year') == $k): ?> selected="selected"<?php if ($k == $this->getInfoData($_code . '_expiry_year')): ?> selected="selected"<?php endif ?><?php endif ?>><?php echo $v ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cvc" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text cvv payScrow-validate-cc-cvc" id="<?php echo $_code ?>_cvc" value="<?php echo $this->getPaymentEntry($_code, 'cvc'); ?>" />
+            </div>
+            <a href="#" class="cvv-what-is-this"><?php echo $this->__('What is this?') ?></a>
+        </div>
+    </li>
+    <li>
+        <input class="payScrow-payment-token-cc payScrow-validate-cc-token" name="payment[payScrow-payment-token-cc]" id="payment[payScrow-payment-token-cc]" type="hidden" />
+        <input class="payScrow_3ds_cancel" type="hidden" value="<?php echo $this->__("payScrow_3ds_cancel"); ?>"/>
+        <input class="payScrow-payment-token-url-cc" type="hidden" value="<?php echo  $this->getUrl('payScrow/token/total', array('_secure'=>true));  ?>"/>
+        <input class="payScrow-payment-token-log-cc" type="hidden" value="<?php echo  $this->getUrl('payScrow/token/log', array('_secure'=>true));  ?>"/>
+        <input class="payScrow-payment-currency-cc" type="hidden" value="<?php echo Mage::helper('payScrow/paymentHelper')->getCurrency(Mage::getSingleton('checkout/session')->getQuote()); ?>"/>
+        <input class="payScrow-payment-customer-email-cc" type="hidden" value="<?php echo Mage::helper('payScrow/customerHelper')->getCustomerEmail(Mage::getSingleton('checkout/session')->getQuote()); ?>"/>
+        <input class="payScrow-option-debug-cc" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->isInDebugMode(); ?>"/>
+        <input class="payScrow-info-public_key-cc" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->getPublicKey(); ?>"/>
+        <input class="payScrow-info-fastCheckout-cc" type="hidden" value="<?php echo $this->isFastCheckout($_code); ?>"/>
+        <input class="payScrow-payment-error-number" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_number_cc");?>"/>
+        <input class="payScrow-payment-error-holder" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_holder_cc"); ?>"/>
+        <input class="payScrow-payment-error-expdate" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_expdate"); ?>"/>
+        <input class="payScrow-payment-error-cvc" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_cvc"); ?>"/>
+        <input class="payScrow-payment-error-cc-token" type="hidden" value="<?php echo $this->__("payScrow_error_text_invalid_token"); ?>"/>
+        <input class="PAYScrow_internal_server_error-cc" type="hidden" value="<?php echo $this->__("PAYScrow_internal_server_error"); ?>"/>
+        <input class="PAYScrow_invalid_public_key-cc" type="hidden" value="<?php echo $this->__("PAYScrow_invalid_public_key"); ?>"/>
+        <input class="PAYScrow_invalid_payment_data-cc" type="hidden" value="<?php echo $this->__("PAYScrow_invalid_payment_data"); ?>"/>
+        <input class="PAYScrow_unknown_error-cc" type="hidden" value="<?php echo $this->__("PAYScrow_unknown_error"); ?>"/>
+        <input class="PAYScrow_3ds_cancelled-cc" type="hidden" value="<?php echo $this->__("PAYScrow_3ds_cancelled"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_number-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_number"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_exp_year-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_exp_year"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_exp_month-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_exp_month"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_exp-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_exp"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_cvc-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_cvc"); ?>"/>
+        <input class="PAYScrow_field_invalid_card_holder-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_card_holder"); ?>"/>
+        <input class="PAYScrow_field_invalid_amount_int-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_amount_int"); ?>"/>
+        <input class="PAYScrow_field_field_invalid_amount-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_field_invalid_amount"); ?>"/>
+        <input class="PAYScrow_field_invalid_currency-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_currency"); ?>"/>
+        <input class="PAYScrow_field_invalid_email-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_email"); ?>"/>
+        <input class="PAYScrow_field_invalid_account_number-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_account_number"); ?>"/>
+        <input class="PAYScrow_field_invalid_account_holder-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_account_holder"); ?>"/>
+        <input class="PAYScrow_field_invalid_bank_code-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_bank_code"); ?>"/>
+        <input class="PAYScrow_field_invalid_iban-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_iban"); ?>"/>
+        <input class="PAYScrow_field_invalid_bic-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_bic"); ?>"/>
+        <input class="PAYScrow_field_invalid_country-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_country"); ?>"/>
+        <input class="PAYScrow_field_invalid_bank_data-cc" type="hidden" value="<?php echo $this->__("PAYScrow_field_invalid_bank_data"); ?>"/>
+        <input class="payScrow-info-pci-cc" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->getPci($_code); ?>"/>
+    </li>
+    <?php if (!is_null(Mage::getStoreConfig('payment/payScrow_creditcard/checkout_desc', Mage::app()->getStore()->getStoreId()))): ?>
+    <li>
+        <?php echo Mage::getStoreConfig('payment/payScrow_creditcard/checkout_desc', Mage::app()->getStore()->getStoreId()); ?>
+    </li>
+    <?php endif; ?>
+</ul>
+
+<script type="text/javascript">
+    //<![CDATA[
+        payScrowCreditcard = new PayScrow('<?php echo $_code; ?>');
+        payScrowCreditcard.setValidationRules();
+        payScrowCreditcard.setEventListener('<?php echo Mage::helper('payScrow/optionHelper')->getTokenSelector(); ?>');
+        <?php echo $this->getCreditCardLogosBrand(); ?>
+        payScrowCreditcard.setCreditcards(payScrowCcBrands);
+        payScrowPci = '<?php echo Mage::helper('payScrow/optionHelper')->getPci($_code); ?>';
+    //]]>
+</script>

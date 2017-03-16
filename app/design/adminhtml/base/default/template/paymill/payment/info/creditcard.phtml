@@ -1,0 +1,21 @@
+<?php if ($_specificInfo = $this->getSpecificInformation()): ?>
+    <table>
+        <tr>
+            <td><img src="<?php echo $_specificInfo['imgUrl'] ?>" /></td>
+        </tr>
+        <tr>
+            <td><?php echo $this->htmlEscape($this->getMethod()->getTitle()) ?></td>
+        </tr>
+        <?php if (array_key_exists('payScrowPreauthId', $_specificInfo)): ?>
+        <tr>
+            <td><?php echo $this->escapeHtml("Preauth Id: " . $_specificInfo['payScrowPreauthId']); ?></td>
+        </tr>
+        <?php endif; ?>
+        <?php if (array_key_exists('payScrowTransactionId', $_specificInfo)): ?>
+        <tr>
+            <td><?php echo $this->escapeHtml("Transaction Id: " . $_specificInfo['payScrowTransactionId']); ?></td>
+        </tr>
+        <?php endif; ?>
+    </table>
+<?php endif; ?>
+<?php echo $this->getChildHtml(); ?>

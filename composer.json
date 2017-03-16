@@ -1,0 +1,27 @@
+{
+    "name": "payScrow/payScrow-magento",
+    "type": "magento-module",
+    "description": "Magento Extension for PAYScrow payments",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra":{
+        "map":[
+          ["app/code/community/PayScrow/PayScrow", "app/code/community/PayScrow/PayScrow"],
+          ["app/design/adminhtml/base/default/layout/payScrow.xml", "app/design/adminhtml/base/default/layout/payScrow.xml"],
+          ["app/design/adminhtml/base/default/template/payScrow", "app/design/adminhtml/base/default/template/payScrow"],
+          ["app/design/frontend/base/default/layout/payScrow.xml", "app/design/frontend/base/default/layout/payScrow.xml"],
+          ["app/design/frontend/base/default/template/payScrow", "app/design/frontend/base/default/template/payScrow"],
+          ["app/etc/modules/PayScrow_PayScrow.xml", "app/etc/modules/PayScrow_PayScrow.xml"],
+          ["js/payScrow", "js/payScrow"],
+          ["lib/Services/PayScrow", "lib/Services/PayScrow"],
+          ["skin/frontend/base/default/css/payScrow", "skin/frontend/base/default/css/payScrow"],
+          ["skin/frontend/base/default/images/payScrow", "skin/frontend/base/default/images/payScrow"]
+        ]
+    },
+    "authors":[
+        {
+            "name":"payScrow"
+        }
+    ]
+}

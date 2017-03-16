@@ -1,0 +1,13 @@
+<?php
+?>
+
+<div style="border-bottom: 4px solid #DFDFDF;margin-bottom: 18px;padding-bottom: 0.25em;">
+    <h3>Developer Info</h3>
+    <pre><?php echo $this->getDevInfo(); ?></pre>
+</div> 
+<?php if(strlen($this->getDevInfoAdditional()) > 0): ?>
+<div style="border-bottom: 4px solid #DFDFDF;margin-bottom: 18px;padding-bottom: 0.25em;">
+    <h3>Extended Developer Info</h3>
+    <pre><?php echo $this->getDevInfoAdditional(); ?></pre>
+</div>
+<?php endif; ?>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <adminhtml_log_index>
+        <reference name="content">
+            <block type="payScrow/adminhtml_log" name="adminhtml_log.grid.container" />
+        </reference>
+    </adminhtml_log_index>
+    <adminhtml_log_grid>
+        <update handle="formkey"/>
+        <block type="payScrow/adminhtml_log_grid" name="adminhtml_log.grid" output="toHtml" />
+    </adminhtml_log_grid> 
+    <adminhtml_hook_index>
+        <reference name="content">
+            <block type="payScrow/adminhtml_hook" name="adminhtml_hook.grid.container" />
+        </reference>
+    </adminhtml_hook_index>
+    <adminhtml_hook_grid>
+        <update handle="formkey"/>
+        <block type="payScrow/adminhtml_hook_grid" name="adminhtml_hook.grid" output="toHtml" />
+    </adminhtml_hook_grid> 
+</layout>

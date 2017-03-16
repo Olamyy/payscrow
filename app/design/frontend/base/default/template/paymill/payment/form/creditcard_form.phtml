@@ -1,0 +1,74 @@
+<?php $_code = $this->getMethodCode(); ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <?php echo $this->getCreditCardLogosDisplay();?>
+    </li>
+    <?php if($this->isFastCheckout($_code) === 'true'):?>
+    <div id="payScrowFastCheckoutDiv">
+        <?php
+        if($this->getPaymentEntry($_code, 'card_holder') != ''): ?>
+        <li>
+            <label><?php echo $this->__("payScrow_Holder"); ?>:</label>
+            <div class="input-box">
+                <?php echo $this->getPaymentEntry($_code, 'card_holder'); ?>
+            </div>
+        </li>
+        <?php endif; ?>
+        <li>
+            <label><?php echo $this->__("payScrow_Number"); ?>:</label>
+            <div class="input-box">
+                <?php echo $this->getPaymentEntry($_code, 'cc_number'); ?>
+            </div>
+        </li>
+        <li>
+            <label><?php echo $this->__("payScrow_Date") ?>:</label>
+            <div class="input-box">
+                <?php echo $this->getPaymentEntry($_code, 'expire_month') . "/" . $this->getPaymentEntry($_code, 'expire_year'); ?>
+            </div>
+        </li>
+        <li>
+            <label><?php echo $this->__('Card Verification Number'); ?></label>
+            <div class="input-box">
+                <?php echo $this->getPaymentEntry($_code, 'cvc'); ?>
+            </div>
+        </li>
+        <li>
+            <label></label>
+            <div class="input-box">
+                <button type="button" onclick="payScrowCreditcard.methodInstance.openPayScrowFrame('de');"><?php echo $this->__("payScrow_change"); ?></button>
+            </div>
+        </li>
+    </div>
+    <?php endif; ?>
+    <li>
+        <div id='payScrowContainer'>
+
+        </div>
+        <input class="payScrow-payment-token-cc payScrow-validate-cc-token" name="payment[payScrow-payment-token-cc]" id="payment[payScrow-payment-token-cc]" type="hidden" />
+        <input class="payScrow-payment-token-url-cc" type="hidden" value="<?php echo  $this->getUrl('payScrow/token/total', array('_secure'=>true));  ?>"/>
+        <input class="payScrow-payment-token-log-cc" type="hidden" value="<?php echo  $this->getUrl('payScrow/token/log', array('_secure'=>true));  ?>"/>
+        <input class="payScrow-info-public_key-cc" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->getPublicKey(); ?>"/>
+        <input class="payScrow-option-debug-cc" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->isInDebugMode(); ?>"/>
+        <input class="payScrow-info-pci-cc" type="hidden" value="<?php echo Mage::helper('payScrow/optionHelper')->getPci($_code); ?>"/>
+        <input class="payScrow-info-fastCheckout-cc" type="hidden" value="<?php echo $this->isFastCheckout($_code); ?>"/>
+        <input class="payScrow-payment-currency-cc" type="hidden" value="<?php echo Mage::helper('payScrow/paymentHelper')->getCurrency(Mage::getSingleton('checkout/session')->getQuote()); ?>"/>
+        <input class="payScrow-payment-customer-email-cc" type="hidden" value="<?php echo Mage::helper('payScrow/customerHelper')->getCustomerEmail(Mage::getSingleton('checkout/session')->getQuote()); ?>"/>
+    </li>
+    <?php if (!is_null(Mage::getStoreConfig('payment/payScrow_creditcard/checkout_desc', Mage::app()->getStore()->getStoreId()))): ?>
+        <li>
+            <?php echo Mage::getStoreConfig('payment/payScrow_creditcard/checkout_desc', Mage::app()->getStore()->getStoreId()); ?>
+        </li>
+    <?php endif; ?>
+</ul>
+<script type="text/javascript">
+    //<![CDATA[
+    payScrowCreditcard = new PayScrow('<?php echo $_code; ?>');
+
+    <?php if($this->isFastCheckout($_code) === 'false'): ?>
+    payScrow.embedFrame('payScrowContainer', {lang: '<?php echo $this->__('payScrow_lang') ?>'}, PayScrowFrameResponseHandler);
+    <?php endif; ?>
+
+    payScrowTokenSelector = '<?php echo Mage::helper('payScrow/optionHelper')->getTokenSelector(); ?>';
+    payScrowPci = '<?php echo Mage::helper('payScrow/optionHelper')->getPci($_code); ?>';
+    //]]>
+</script>
